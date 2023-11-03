@@ -1,13 +1,12 @@
 import './App.css';
-import WaterLevel from './WaterLevel';
-import FertilizeLevel from './FertilizeLevel';
+import GreenHouse from './GreenHouseInfo';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <WaterLevel/>
-        <FertilizeLevel/>
+        
+        <GreenHouse/>
       </header>
     </div>
   );
