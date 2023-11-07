@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+/* Add styles for the image gallery container if needed */
+.image-gallery {
+  /* example: display as flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px; /* This adds space between the images */
+}
+
+/* Style for each image to control its size */
+.gallery-image {
+  max-width: 200px; /* Set a maximum width for each image */
+  height: auto; /* Keep the aspect ratio */
+  border-radius: 10px; /* Optional: if you want rounded corners */
+}
+
