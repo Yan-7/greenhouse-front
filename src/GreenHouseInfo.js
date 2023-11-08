@@ -32,9 +32,7 @@ const GreenHouse = () => {
 
     const handleUpdateWaterLevel = () => {
 
-        const minWaterLevel = 0;
-        const maxWaterLevel = 0;
-        axios.put(`/api/green-house/1/water-level`, { min: minWaterLevel, max: maxWaterLevel })
+        axios.put(`/api/green-house/1/water-level`, { min: minWaterLevel, max: maxWaterLevel }) //min + max --> names for the controller
             .then(response => {
                 console.log('Water params updated: ', response.data);
                 setGreenHouseData(response.data);
