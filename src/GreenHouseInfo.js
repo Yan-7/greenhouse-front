@@ -7,16 +7,17 @@ import axios from 'axios';
 
 const GreenHouse = () => {
 
+    const [greenHouseData, setGreenHouseData] = useState(null);  // State to hold GreenHouse data
     // States for min and max  levels
     const [minWaterLevel, setMinWaterLevel] = useState('')
     const [maxWaterLevel, setMaxWaterLevel ] = useState('')
 
     const [minFertilizeLevel, setMinFertilizeLevel] = useState('')
     const [maxFertilizeLevel, setMaxFertilizeLevel] = useState('')
-
-    const [greenHouseData, setGreenHouseData] = useState(null);  // State to hold GreenHouse data
     
-    const [newLightLevel, setnewLightLevel] = useState('');
+    const [lightLevel, setLightLevel] = useState('');
+    const [lightOn, setLightOn] = useState('');
+    const [lightOff, setLightOff] = useState('')
 
     useEffect(() => {
         // Existing Axios call to initially load GreenHouse data
@@ -31,7 +32,6 @@ const GreenHouse = () => {
     }, []);
 
     const handleUpdateWaterLevel = () => {
-
         axios.put(`/api/green-house/1/water-level`, { min: minWaterLevel, max: maxWaterLevel }) //min + max --> names for the controller
             .then(response => {
                 console.log('Water params updated: ', response.data);
@@ -55,9 +55,16 @@ const GreenHouse = () => {
     };
 
     const handleUpdateLightLevel = () => {
-
-        
-        axios.put(`/api/green-house/1/light-level`, {newLevel: newLightLevel})
+        // Convert HH:mm format into seconds since midnight
+        const converToSeconds = (time) => {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 3600 + minutes * 60;
+        }
+        axios.put(`/api/green-house/1/light-level`, {
+        on: converToSeconds(lightOn),
+        off: converToSeconds(lightOff),
+        level: parseInt(lightLevel,10) // Ensure lightLevel is sent as a number
+        })
         .then(response => {
             setGreenHouseData(response.data);
             console.log("light level updated to: " + response.data);
@@ -71,10 +78,13 @@ const GreenHouse = () => {
         <div>
         {greenHouseData ? (
             <div>
-                <h1>Current Green House Info:</h1>
+                <h1>Green House Info:</h1>
                 <p>Water Level: {greenHouseData.waterLevel} mm</p>
+                <p>min water level: {greenHouseData.minWater} ---- max Water level: {greenHouseData.maxWater}</p>
                 <p>Fertilize Level: {greenHouseData.fertilizeLevel} units</p>
+                <p> min Fertilize Level: {greenHouseData.minFertilize} ----  min Fertilize Level: {greenHouseData.maxFertilize}</p>
                 <p>Light Level: {greenHouseData.lightLevel} lux</p>
+                <p>turn on: {greenHouseData.lightonTime} --- turn off: {greenHouseData.lightOffTime}</p>
                 
                 {/* Inputs for min and max water levels */}
                 <input
@@ -105,7 +115,28 @@ const GreenHouse = () => {
                 />
                 <button onClick={handleUpdateFertilizeLevel}>Set Fertilize Level Range</button>
                 
-                
+                <p></p>
+                light on:
+                <input
+                    type="time"
+                    value={lightOn}
+                    onChange={e => setLightOn(e.target.value)}
+                    placeholder='turn on time'
+                />
+                light off:
+                <input
+                    type='time'
+                    value={lightOff}
+                    onChange={e => setLightOff(e.target.value)}
+                    placeholder='turn off time'
+                />
+                <input
+                    type='number'
+                    value={lightLevel}
+                    onChange={e => setLightLevel(e.target.value)}
+                    placeholder='enter light level'
+                />
+                <button onClick={handleUpdateLightLevel}>Set light parameters</button>
             </div>
         ) : (
             <p>Loading GreenHouse...</p>

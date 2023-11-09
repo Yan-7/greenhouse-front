@@ -7,8 +7,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         
-        <ImageGallery/>
+        
         <GreenHouse/>
+        <ImageGallery/>
       </header>
     </div>
   );

@@ -43,12 +43,12 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px; /* This adds space between the images */
+  gap: 10px; /* This adds space between the images */
 }
 
 /* Style for each image to control its size */
 .gallery-image {
-  max-width: 200px; /* Set a maximum width for each image */
+  max-width: 100px; /* Set a maximum width for each image */
   height: auto; /* Keep the aspect ratio */
   border-radius: 10px; /* Optional: if you want rounded corners */
 }
