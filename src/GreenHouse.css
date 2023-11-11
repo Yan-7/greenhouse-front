@@ -1,0 +1,81 @@
+.greenhouse-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eef2f3; /* Soft background color */
+}
+
+.greenhouse-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    max-width: 800px; /* Slightly wider container */
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.greenhouse-container h1 {
+    color: #4CAF50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.data-display {
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f6f6f6; /* Lighter background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+input[type="number"], input[type="time"] {
+    width: calc(50% - 12px);
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px; /* Larger font size for better readability */
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #45a049;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .greenhouse-container {
+        width: 90%;
+    }
+
+    input[type="number"], input[type="time"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .greenhouse-wrapper {
+        height: auto;
+        padding: 20px;
+    }
+}

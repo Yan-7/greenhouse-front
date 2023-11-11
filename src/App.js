@@ -1,5 +1,6 @@
 import './App.css';
-import GreenHouse from './GreenHouseInfo';
+import DashBoard from './DashBoard';
+
 import ImageGallery from './ImageGallery';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
       <header className="App-header">
         
         
-        <GreenHouse/>
+        <DashBoard/>
         <ImageGallery/>
       </header>
     </div>
