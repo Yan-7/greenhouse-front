@@ -3,7 +3,7 @@ import React from 'react';
 import GreenHouseComponent from './GreenHouseComponent';
 import './GreenHouse.css';
 
-const DashBoard = () => {
+const DashBoard2 = () => {
     const greenhouseIds = [1, 2, 3, 4, 5, 6]; // Example greenhouse IDs
 
     return (
@@ -15,4 +15,4 @@ const DashBoard = () => {
     );
 };
 
-export default DashBoard;
+export default DashBoard2;

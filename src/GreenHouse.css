@@ -9,47 +9,48 @@
 .greenhouse-container {
     font-family: 'Arial', sans-serif;
     color: #333;
-    max-width: 800px; /* Slightly wider container */
-    padding: 20px;
+    max-width: 400px; /* Reduce max width for smaller containers */
+    padding: 10px; /* Adjust padding */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     background-color: #fff;
     border-radius: 10px;
+    margin: 10px; /* Add margin for spacing */
 }
 
 .greenhouse-container h1 {
     color: #4CAF50;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Adjust bottom margin */
 }
 
 .data-display {
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 15px; /* Adjust padding */
+    margin-bottom: 20px; /* Adjust bottom margin */
     background-color: #f6f6f6; /* Lighter background for contrast */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 input[type="number"], input[type="time"] {
-    width: calc(50% - 12px);
-    padding: 12px;
-    margin: 10px 0;
+    width: calc(50% - 10px); /* Adjust width calculation */
+    padding: 10px; /* Adjust padding */
+    margin: 8px 0; /* Adjust margin */
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px; /* Larger font size for better readability */
+    font-size: 14px; /* Adjust font size */
 }
 
 button {
     background-color: #4CAF50;
     color: white;
-    padding: 12px 25px;
+    padding: 10px 20px; /* Adjust padding */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    margin-top: 15px;
+    font-size: 14px; /* Adjust font size */
+    margin-top: 12px; /* Adjust margin */
 }
 
 button:hover {
@@ -63,9 +64,10 @@ button:hover {
     align-items: center;
 }
 
+/* Responsive design adjustments */
 @media (max-width: 768px) {
     .greenhouse-container {
-        width: 90%;
+        width: 80%; /* Adjust width percentage */
     }
 
     input[type="number"], input[type="time"] {
@@ -77,5 +79,33 @@ button:hover {
     .greenhouse-wrapper {
         height: auto;
         padding: 20px;
+    }
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Adjust flex-basis for smaller components */
+.greenhouse-container {
+    flex-basis: calc(25% - 20px); /* Smaller width for each component */
+    max-width: calc(25% - 20px);
+}
+
+@media (max-width: 768px) {
+    .greenhouse-container {
+        flex-basis: calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .greenhouse-container {
+        flex-basis: 100%;
+        max-width: 100%;
     }
 }

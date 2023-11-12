@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './GreenHouse.css';
 
-
-const DashBoard = () => {
+//the first versoin of the dashboard
+const DashBoard = ({greenHouseId}) => {
 
     const [greenHouseData, setGreenHouseData] = useState(null);  // State to hold GreenHouse data
     // States for min and max  levels
@@ -19,7 +19,7 @@ const DashBoard = () => {
     const [lightOff, setLightOff] = useState('')
     
     const fetchData = () => {
-        axios.get(`/api/green-house/1`)
+        axios.get(`/api/green-house/${greenHouseId}`)
             .then(response => {
                 console.log("response axios green-house: ", response.data);
                 setGreenHouseData(response.data);
@@ -37,10 +37,10 @@ const DashBoard = () => {
         }, 5000);
 
         return () => clearInterval(intervalId); // Cleanup interval on unmount
-    }, []);
+    }, [greenHouseId]);
 
     const handleUpdateWaterLevel = () => {
-        axios.put(`/api/green-house/1/water-level`, { min: minWaterLevel, max: maxWaterLevel }) //min + max --> names for the controller
+        axios.put(`/api/green-house/${greenHouseId}/water-level`, { min: minWaterLevel, max: maxWaterLevel }) //min + max --> names for the controller
             .then(response => {
                 console.log('Water params updated: ', response.data);
                 setGreenHouseData(response.data);
@@ -52,7 +52,7 @@ const DashBoard = () => {
 
     const handleUpdateFertilizeLevel = () => {
         // Use state values for min and max fertilize levels
-        axios.put(`/api/green-house/1/fertilize-level`, { min: minFertilizeLevel, max: maxFertilizeLevel })
+        axios.put(`/api/green-house/${greenHouseId}/fertilize-level`, { min: minFertilizeLevel, max: maxFertilizeLevel })
             .then(response => {
                 console.log("Fertilizer params updated: ", response.data);
                 setGreenHouseData(response.data); // Update the state with the new greenhouse data

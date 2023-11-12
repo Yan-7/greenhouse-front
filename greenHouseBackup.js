@@ -4,7 +4,7 @@ import './GreenHouse.css';
 
 // GreenHouseComponent receives greenhouseId as a prop
 const GreenHouseComponent = ({ greenhouseId }) => {
-    // State hooks for various greenhouse parameters
+        // State hooks for various greenhouse parameters
     const [greenHouseData, setGreenHouseData] = useState(null);
     const [minWaterLevel, setMinWaterLevel] = useState('');
     const [maxWaterLevel, setMaxWaterLevel] = useState('');
@@ -16,7 +16,10 @@ const GreenHouseComponent = ({ greenhouseId }) => {
     // useEffect hook to fetch and periodically update greenhouse data
     useEffect(() => {
 
-
+        if (greenhouseId === 0) {
+            console.error('Invalid Greenhouse ID: 0');
+            return; // Exit early if the greenhouse ID is 0
+        }
         // Function to fetch data from the server
         const fetchData = async () => {
             try {
@@ -29,10 +32,10 @@ const GreenHouseComponent = ({ greenhouseId }) => {
 
         fetchData();
         // Setting up a timer to periodically fetch data
-        const intervalId = setInterval(fetchData, 100000);
+        const intervalId = setInterval(fetchData, 10000);
         return () => clearInterval(intervalId);
     }, [greenhouseId]);
-    // Handlers for updating greenhouse settings
+        // Handlers for updating greenhouse settings
     const handleUpdateWaterLevel = () => {
         axios.put(`/api/green-house/${greenhouseId}/water-level`, { min: minWaterLevel, max: maxWaterLevel })
             .then(response => {
@@ -66,13 +69,13 @@ const GreenHouseComponent = ({ greenhouseId }) => {
             off: converToSeconds(lightOff),
             level: parseInt(lightLevel, 10)
         })
-            .then(response => {
-                setGreenHouseData(response.data);
-                console.log("Light level updated: ", response.data);
-            })
-            .catch(error => {
-                console.error("Error updating light level: ", error);
-            });
+        .then(response => {
+            setGreenHouseData(response.data);
+            console.log("Light level updated: ", response.data);
+        })
+        .catch(error => {
+            console.error("Error updating light level: ", error);
+        });
     };
     return (
         <div className="greenhouse-container">
